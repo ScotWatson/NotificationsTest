@@ -33,13 +33,15 @@ async function start( [ evtWindow ] ) {
       startBtn.appendChild(document.createTextNode("Click here to start"));
       await new Promise(function (resolve, reject) {
         startBtn.addEventListener("click", function (evt) {
-          permission = await Notification.requestPermission();
-          if (permission === "granted") {
-            startBtn.remove();
-            resolve();
-          } else {
-            self.alert("Permission is required to use this app.");
-          }
+          (async function () {
+            permission = await Notification.requestPermission();
+            if (permission === "granted") {
+              startBtn.remove();
+              resolve();
+            } else {
+              self.alert("Permission is required to use this app.");
+            }
+          })();
         });
       });
     });
