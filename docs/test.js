@@ -44,7 +44,7 @@ async function start( [ evtWindow ] ) {
           })();
         });
       });
-    });
+    }
     (async function () {
       await getPermission();
       new Notification("Hello World");
